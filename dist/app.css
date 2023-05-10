@@ -1,0 +1,101 @@
+/*
+    Body Style for preview
+ */
+body {
+    background-color: #14151f;
+    color: #ffffff;
+    height: 100vh;
+}
+
+/*
+ *  --- ここから下を適用 ---
+ */
+
+/*
+    Change cursor on hover
+ */
+*[data-artisan-share]:hover {
+    cursor: pointer;
+}
+
+/*
+    Notification toast style (for copy link)
+ */
+div.artisan-toast {
+    /* variables */
+    --width: 150px;
+    --height: 40px;
+    --space: 10px;
+    --bottom-margin: calc( var(--space) * 4);
+    --transform-y-start-position: calc( var(--height) + var(--bottom-margin) );
+
+    /* styles */
+    width: var(--width);
+    height: var(--height);
+    line-height: var(--height);
+
+    display: block;
+    position: fixed;
+    overflow: hidden;
+
+    left: 0;
+    right: 0;
+    bottom: var(--bottom-margin);
+    margin: auto auto;
+
+    padding: 0 var(--space);
+    text-align: center;
+    font-size: 0.8em;
+
+    background-color: #e7e7e8;
+    color: #14151f;
+
+    border: 1px solid #a1a1a5;
+    border-radius: 3px;
+    
+    -moz-box-shadow: 1px 20px 15px -15px rgba(0, 0, 0, 0.5);
+    -webkit-box-shadow: 1px 20px 15px -15px rgba(0, 0, 0, 0.5);
+    -ms-box-shadow: 1px 20px 15px -15px rgba(0, 0, 0, 0.5);
+    box-shadow: 1px 20px 15px -15px rgba(0, 0, 0, 0.5);
+    
+    /* animation */
+    animation-fill-mode: both;
+    animation-duration: 0.1s;
+    transform: translate3d(0, var(--transform-y-start-position), 0);
+}
+
+div.artisan-toast::before {
+    content: '✅';
+    display: inline-block;
+    margin-right: 5px;
+}
+
+div.artisan-toast.is-active {
+    display: fixed;
+    transform: translateY(0);
+    animation-name: artisan_social_toast_slide_in_up;
+}
+
+div.artisan-toast.is-dismissing {
+    animation-name: artisan_social_toast_slide_out_down;
+}
+
+@keyframes artisan_social_toast_slide_in_up {
+    from {
+      transform: translate3d(0, var(--transform-y-start-position), 0);
+      visibility: visible;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+  }
+
+@keyframes artisan_social_toast_slide_out_down {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        visibility: hidden;
+        transform: translate3d(0, var(--transform-y-start-position), 0);
+    }
+}
